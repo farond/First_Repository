@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<meta charset="UTF-8" />
+	<title>Previsões do Tempo</title>
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+	<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Temperaturas em São Paulo</h1>
+		</div>
+		<div class="panel-body">
+		<table class="table">
+		<thead>
+			<tr>
+				<th>Dia</th>
+				<th>Temperatura Mínima</th>
+				<th>Temperatura Máxima</th>
+				<th>Humidade</th>
+				<th>Chuva</th>
+				<th>Descrição</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="temperaturas : ${temperaturas}">
+				<td th:text="${temperaturas.dia}"></td>
+				<td th:text="${temperaturas.temperaturaMinima}+'°'"></td>
+				<td th:text="${temperaturas.temperaturaMaxima}+'°'"></td>
+				<td th:text="${temperaturas.humidade}+'%'"></td>
+				<td th:text="${temperaturas.chuva}+'%'"></td>
+				<td th:text="${temperaturas.descricao}"></td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	</div>
+</body>
+</html>
