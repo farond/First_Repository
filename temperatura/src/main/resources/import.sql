@@ -5,3 +5,7 @@ insert into temperatura(id, dia, temperatura_maxima, temperatura_minima, humidad
 insert into temperatura(id, dia, temperatura_maxima, temperatura_minima, humidade, chuva, descricao) values (5, 'Quinta-Feira', 34, 18, 42, 20, 'Sol entre Nuvens');
 insert into temperatura(id, dia, temperatura_maxima, temperatura_minima, humidade, chuva, descricao) values (6, 'Sexta-Feira', 27, 18, 64, 20, 'Sol entre Nuvens');
 insert into temperatura(id, dia, temperatura_maxima, temperatura_minima, humidade, chuva, descricao) values (7, 'Sábado', 24, 17, 72, 20, 'Sol entre Nuvens');
+
+
+--adicione um usuário
+insert into usuario (id, login, senha) values (1, 'admin', 'admin');
