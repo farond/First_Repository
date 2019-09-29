@@ -1,93 +1,47 @@
 package br.usjt.temperatura.model;
+import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@Table (name = "tb_temperatura")
+@Getter @Setter @ToString
 
 public class Temperatura {
-	private static final long serialVersionUID = 1L;
+	
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	private String dia;
-	private Double temperaturaMinima;
-	private Double temperaturaMaxima;
+	@GeneratedValue
+	private long id;
+	
+	@Column(nullable=false, length=200)
+	private Double maxima;
+	@Column(nullable=false, length=200)
+	private Double minima;
+	@Column(nullable=false, length=200)
 	private Double humidade;
+	@Column(nullable=false, length=200)
 	private Double chuva;
+	@Column(nullable=false, length=200)
 	private String descricao;
 	
-	public Long getId() 
-	{
-		return id;
-	}
+	@Column(nullable=false, length=200)
+	//@OneToOne(optional=false)
+	//@JoinColumn (name = "id_dia")
+	private String data;
 	
-	public void setId(Long id) 
-	{
-		this.id = id;
-	}
+	@Column(nullable=false, length=200)
+	private Double latitude;
+	@Column(nullable=false, length=200)
+	private Double longitude;
 	
-	public String getDia() 
-	{
-		return dia;
-	}
-	
-	public void setDia(String dia) 
-	{
-		this.dia = dia;
-	}
-	
-	public Double getTemperaturaMinima() 
-	{
-		return temperaturaMinima;
-	}
-	
-	public void setTemperaturaMinima(Double temperaturaMinima) 
-	{
-		this.temperaturaMinima = temperaturaMinima;
-	}
-	
-	public Double getTemperaturaMaxima() 
-	{
-		return temperaturaMaxima;
-	}
-	
-	public void setTemperaturaMaxima(Double temperaturaMaxima) 
-	{
-		this.temperaturaMaxima = temperaturaMaxima;
-	}
-	
-	public Double getHumidade() 
-	{
-		return humidade;
-	}
-	
-	public void setHumidade(Double humidade) 
-	{
-		this.humidade = humidade;
-	}
-	
-	public String getDescricao() 
-	{
-		return descricao;
-	}
-	
-	public void setDescricao(String descricao) 
-	{
-		this.descricao = descricao;
-	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Double getChuva() {
-		return chuva;
-	}
-
-	public void setChuva(Double chuva) {
-		this.chuva = chuva;
-	}
 }
+	
