@@ -12,6 +12,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 <class>br.usjt.temperatura.model.Dia</class>
 <class>br.usjt.temperatura.model.Temperatura</class>
 <class>br.usjt.temperatura.model.Usuario</class>
+<class>br.usjt.temperatura.model.Cidade</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost/usjt_hibernate?createDatabaseIfNotExist=true" />
