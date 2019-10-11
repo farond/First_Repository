@@ -1,6 +1,7 @@
 package br.usjt.temperatura.model;
 
-import javax.persistence.CascadeType;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,17 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.mapping.List;
-
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
-@Table (name = "tb_cidade")
 
+@Table (name = "tb_cidade")
+@Getter @Setter @ToString
 public class Cidade {
+	
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -32,8 +33,8 @@ public class Cidade {
 	@Column(nullable=false, length=100)
 	private double lagitude;
 	
-	@OneToMany(mappedBy= "cidade", cascade = CascadeType.ALL)
-	private List temperaturas;
+	@OneToMany (mappedBy= "cidade")
+	private List<Temperatura> temperaturas;
 	
 
 }

@@ -1,6 +1,7 @@
 package br.usjt.temperatura.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +12,13 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter
-@Setter
+
 @Entity
 @Table (name = "tb_dia")
+
+@Getter @Setter @ToString
 public class Dia {
 	
 	@Id
@@ -25,9 +28,9 @@ public class Dia {
 	@Column(nullable=false, length=200)
 	private String Dia;
 	
-	@OneToOne(optional=false)
-	@JoinColumn (name = "id_temperatura")
-	private Dia dia;
+	@OneToOne(optional=true,  cascade = CascadeType.ALL)
+	@JoinColumn (name = "Temperatura")
+	private Temperatura temperatura;
 
 	
 	

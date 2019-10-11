@@ -9,13 +9,19 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 		<!-- provedor/implementacao do JPA -->
 
 <!-- entidade mapeada -->
-<class>br.usjt.temperatura.model.Dia</class>
 <class>br.usjt.temperatura.model.Temperatura</class>
-<class>br.usjt.temperatura.model.Usuario</class>
+<class>br.usjt.temperatura.model.Dia</class>
 <class>br.usjt.temperatura.model.Cidade</class>
+<class>br.usjt.temperatura.model.Usuario</class>
+
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost/usjt_hibernate?createDatabaseIfNotExist=true" />
+				value="jdbc:mysql://localhost:3306/previsao?createDatabaseIfNotExist=true"/>
+				
+				<property name="javax.persistence.jdbc.url" 
+				value="jdbc:mysql://localhost:3306?useTimezone=true&amp;serverTimezone=UTC"/>
+				
+		
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="1065845" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

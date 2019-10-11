@@ -1,4 +1,5 @@
 package br.usjt.temperatura.model;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -45,13 +46,13 @@ public class Temperatura {
 	@Column(nullable=false, length=200)
 	private Double longitude;
 	
-	@OneToOne(optional=true)
+	@OneToOne(optional=true, cascade = CascadeType.ALL)
 	@JoinColumn (name = "dia")
 	private Dia dia;
 	
-	@ManyToOne 
-	@JoinColumn (name="cidade")
-	private Cidade cidade = new Cidade();
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn (name="id_cidade")
+	private Cidade cidade;
 	
 
 }
