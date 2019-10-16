@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,17 +22,18 @@ public class Cidade {
 	
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(nullable=false, length=150)
 	private String Cidade;
 	
 	@Column(nullable=false, length=100)
-	private double longitude;
+	private String longitude;
+	
 	
 	@Column(nullable=false, length=100)
-	private double lagitude;
+	private String latitude;
 	
 	@OneToMany (mappedBy= "cidade")
 	private List<Temperatura> temperaturas;
