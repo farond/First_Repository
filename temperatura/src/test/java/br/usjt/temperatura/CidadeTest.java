@@ -31,19 +31,10 @@ public class CidadeTest {
 			System.out.println(c.getId());
 		}
 		
-		@Test
-		public void testInsertCidadeI() {
-			Cidade c = new Cidade();
-			c.setCidade("Maua");
-			c.setLongitude("-46.4614");
-			c.setLatitude("-23.6687");
-			c = cidadeRepository.save(c);
-			System.out.println(c.getId());
-		}
-
+	
 	@Test
-		public void testBuscaPorNome() {
-			Optional<Cidade> c = cidadeRepository.findByNome(null);
+		public void testBuscaPorId() {
+			Optional<Cidade> c = cidadeRepository.findById(2L);
 			System.out.println(c.get());
 		}
 
@@ -61,7 +52,7 @@ public class CidadeTest {
 		//@Test
 		//public void testDeletePorNome() {
 			//Cidade c = new Cidade();
-			//c.setNome(1L);
+			//c.setNome(2L);
 			//cidadeRepository.delete(c);
 		//}
 	}

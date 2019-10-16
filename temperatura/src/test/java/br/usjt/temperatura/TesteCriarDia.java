@@ -15,11 +15,12 @@ public class TesteCriarDia {
 		Dia d = new Dia ();
 		d.setDia("Terça");
 		manager.persist(d);
+		
 		Temperatura t = new Temperatura();
 		t.setChuva("50");
 		t.setData("28/10/2019");
 		t.setDescricao("Céu Coberto");
-		t.setUmidade("Humidade de 50");
+		t.setUmidade("Umidade de 50");
 		t.setMaxima("28");
 		t.setMinima("18");	
 				
