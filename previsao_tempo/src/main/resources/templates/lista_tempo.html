@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Previsão do tempo</title>
+    <meta name="viewport" content="width=device-width"/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet"/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+          rel="stylesheet"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+<div class="panel panel-default" style="margin: 10px">
+    <div class="panel-heading">
+        <h1 class="panel-title">Previsão do tempo</h1>
+        <form action="/tempo" method="post">
+            <input type="submit" value="Buscar Todos">
+        </form>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Cidade</th>
+                <th>Nome do dia na semana</th>
+                <th>Temperatura mínima</th>
+                <th>Temperatura máxima</th>
+                <th>humidade relativa do ar</th>
+                <th>Data e Hora</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Descrição</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tempo : ${tempos}">
+                <td th:text="${tempo.cidade.nome}"></td>
+                <td th:text="${tempo.diaSemana.dia}"></td>
+                <td th:text="${tempo.temperaturaMin}"></td>
+                <td th:text="${tempo.temperaturaMax}"></td>
+                <td th:text="${tempo.humidade}"></td>
+                <td th:text="${tempo.dataHora}"></td>
+                <td th:text="${tempo.cidade.latitude}"></td>
+                <td th:text="${tempo.cidade.longitude}"></td>
+                <td th:text="${tempo.discricao}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<form action="/buscarCidade" method="post">
+    <input type="text" name="nome" placeholder="Buscar Cidade">
+    <input type="submit">
+</form>
+<br><br>
+<form action="/buscarLateLon" method="post">
+    <input type="text" name="lat" placeholder="Buscar latitude">
+    <input type="text" name="lon" placeholder="Buscar longitude">
+    <input type="submit">
+</form>
+<form method="POST" action="@{tempos}">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Nome Cidade" th:field="*{tempo.cidade.nome}"/> 
+				<input type="text" class="form-control" placeholder="Dia da semana" th:field="*{tempo.diaSemana.dia}"/>
+				<input type="text" class="form-control" placeholder="Temperatura Minima" th:field="*{tempo.temperaturaMin}"/>
+				<input type="text" class="form-control" placeholder="Temperatura Máxima" th:field="*{tempo.temperaturaMax}"/>
+				<input type="text" class="form-control" placeholder="Humidade" th:field="*{tempo.humidade}"/>
+				<input type="text" class="form-control" placeholder="data e hora" th:field="*{tempo.dataHora}"/>
+				<input type="text" class="form-control" placeholder="Latitude" th:field="*{tempo.cidade.latitude}"/>
+				<input type="text" class="form-control" placeholder="Longitude" th:field="*{tempo.cidade.longitude}"/>
+				<input type="text" class="form-control" placeholder="Descrição" th:field="*{tempo.discricao}"/>
+				<button type="submit" class="btn btn-primary">Adicionar</button>
+			</div>
+		</form>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
