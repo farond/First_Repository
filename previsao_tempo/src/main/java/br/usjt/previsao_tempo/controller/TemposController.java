@@ -64,6 +64,13 @@ public class TemposController {
         return mv;
     }
 
+    //Salvar Tempo
+    @PostMapping("/salvartempo")
+    public String salvar (Tempo temp) {
+        temposService.salvar(temp);
+        return "redirect:/tempo";
+    }
+
     @PostMapping("/tempo")
     public ModelAndView Home() {
         ModelAndView mv = new ModelAndView("lista_tempo");

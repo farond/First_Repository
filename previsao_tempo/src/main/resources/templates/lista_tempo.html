@@ -62,14 +62,14 @@
     <input type="text" name="lon" placeholder="Buscar longitude">
     <input type="submit">
 </form>
-<form method="POST" action="@{tempos}">
+<form th:action="@{/salvartempo}" method="post">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Nome Cidade" th:field="*{tempo.cidade.nome}"/> 
 				<input type="text" class="form-control" placeholder="Dia da semana" th:field="*{tempo.diaSemana.dia}"/>
 				<input type="text" class="form-control" placeholder="Temperatura Minima" th:field="*{tempo.temperaturaMin}"/>
 				<input type="text" class="form-control" placeholder="Temperatura Máxima" th:field="*{tempo.temperaturaMax}"/>
 				<input type="text" class="form-control" placeholder="Humidade" th:field="*{tempo.humidade}"/>
-				<input type="text" class="form-control" placeholder="data e hora" th:field="*{tempo.dataHora}"/>
+				<input type="text" class="form-control" placeholder="Data e hora" th:field="*{tempo.dataHora}"/>
 				<input type="text" class="form-control" placeholder="Latitude" th:field="*{tempo.cidade.latitude}"/>
 				<input type="text" class="form-control" placeholder="Longitude" th:field="*{tempo.cidade.longitude}"/>
 				<input type="text" class="form-control" placeholder="Descrição" th:field="*{tempo.discricao}"/>

@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.io.Serializable;
@@ -37,6 +38,7 @@ public class Tempo implements Serializable {
     @Column(name = "humidade_tempo")
     private Double humidade;
     @Column(name = "datahora_tempo")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private String dataHora;
     @Column(name = "desc_tempo")
     private String discricao;
