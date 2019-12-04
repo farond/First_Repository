@@ -24,7 +24,7 @@ public class DiaSemana {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_semana")
+    @Column(name = "id_semana", nullable=false)
     private Long id;
     @Column(name = "dia_semana")
     private String dia;

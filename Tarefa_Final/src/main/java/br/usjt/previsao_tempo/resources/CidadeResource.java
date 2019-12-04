@@ -32,8 +32,10 @@ public class CidadeResource {
     public List<Cidade> buscaPeloLatELon(@RequestParam Double latitude, @RequestParam Double longitude) {
         return cidadeRepository.findAllByLatitudeAndLongitude(latitude, longitude);
     }
+    
+   
 
-    @PostMapping("/salvar")
+    @PostMapping("/salvarcidade")
 //@ResponseStatus (HttpStatus.CREATED) agora desnecessária
     public ResponseEntity<Cidade> salvar(@RequestBody Cidade cidade, HttpServletResponse
             response) {

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,7 +33,7 @@ public class Tempo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tempo")
+    @Column(name = "tempo_id")
     private Long id;
     
     //    @Column(name = "dia_periodo")
@@ -41,16 +41,16 @@ public class Tempo implements Serializable {
     
     @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false, name = "id_semana", foreignKey = @ForeignKey(name = "FK_tb_tempo_tb_semana"))
+    @JoinColumn(nullable = false, name = "id_semana")
     private DiaSemana diaSemana;
 
     @Column(name = "tempmin_tempo")
     @JsonAlias("temp_min")
-    private Double temperaturaMin;
+    private Double tempMin;
     
     @Column(name = "tempmax_tempo")
     @JsonAlias("temp_max")
-    private Double temperaturaMax;
+    private Double tempMax;
     
     @Column(name = "humidade_tempo")
     @JsonAlias("humidity")
@@ -70,19 +70,16 @@ public class Tempo implements Serializable {
 	
 	@JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false, name = "id_cidade", foreignKey = @ForeignKey(name = "FK_tb_tempo_tb_cidade"))
+    @JoinColumn(nullable = false, name = "cidade_id")
     private Cidade cidade;
     
     @Override
     public String toString() {
         return ((DiaSemana) diaSemana).getDia() + " "
-                + "Temperatura minima: " + getTemperaturaMin() + "ºC "
-                + "Temperatura maxima: " + getTemperaturaMax() + "ºC "
+                + "Temperatura minima: " + getTempMin() + "ºC "
+                + "Temperatura maxima: " + getTempMax() + "ºC "
                 + "Humidade: " + getHumidade() + "%";
     }
 
-	public Tempo(Object id2, DiaSemana diaSemana2, Date data, double temperaturaMax2, double humidade2, Double humidity,
-			String description, String icon, Cidade cidade2) {
-		// TODO Auto-generated constructor stub
-	}
+	
 }

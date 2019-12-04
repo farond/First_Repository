@@ -63,9 +63,9 @@ public class TemposService {
 		List<Tempo> tempos = new ArrayList<>();
 		for (Previsao previsao : forecast.getPrevisoes()) {
 			Date data = new Date(1000 * previsao.getDt());
-			Tempo t = new Tempo(null, semanaRepo.findById(Long.valueOf(diaSemana(data))).get(), data, 
+			Tempo t = new Tempo(null, semanaRepo.findById(Long.valueOf(diaSemana(data))).get(), previsao.getTemperature().getHumidity(), 
 					previsao.getTemperature().getTempMin() - TO_CELSIUS, 
-					previsao.getTemperature().getTempMax() - TO_CELSIUS, previsao.getTemperature().getHumidity(), 
+					previsao.getTemperature().getTempMax() - TO_CELSIUS, data, 
 					previsao.getWeathers().get(0).getDescription(), previsao.getWeathers().get(0).getIcon(), cidade);
 			tempos.add(t);		
 		}

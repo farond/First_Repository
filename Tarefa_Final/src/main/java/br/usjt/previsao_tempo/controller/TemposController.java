@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -74,14 +75,23 @@ public class TemposController {
         return mv;
     }
     
-    @GetMapping(value = "/buscarPrev/cidade/{cidadeId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public String consume(@PathVariable long cidadeId) {
-		Cidade cidade = cidadeRepo.findById(cidadeId).get();
+    @PostMapping(value = "/buscarPrev/cidade", produces = MediaType.APPLICATION_JSON_VALUE,  consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String consume(@RequestBody long cidadeId) {
+		Cidade cidade = cidadeRepo.findById(cidadeId).get(); //TODO: O que fazer se for inválido?
 		Forecast forecast = temposService.obter(cidade);
 		List<Tempo> climas = temposService.toClimaList(forecast, cidade);
 		temposService.saveClimas(climas);
 		return "redirect:/previsoes";
 	}
+
+    //@PostMapping(value = "/buscarnome", produces = MediaType.APPLICATION_JSON_VALUE)
+	//public String consume(@PathVariable String nome) {
+		//Cidade cidade = (Cidade) cidadeRepo.findAllByCidade_Nome(nome);
+		//Forecast forecast = temposService.obter(cidade);
+		//List<Tempo> climas = temposService.toClimaList(forecast, cidade);
+		//temposService.saveClimas(climas);
+		//return "redirect:/previsoes";
+	//}
     
     //Salvar Tempo
     @PostMapping("/salvartempo")
@@ -89,6 +99,11 @@ public class TemposController {
 		temposService.salvar(temp);
 		return "redirect:/tempo";
 	}
+    
+    @PostMapping("/cadastrar")
+    public Cidade salvar(Cidade cidade) {
+    return cidadeRepo.save(cidade);
+    }
 
     @PostMapping("/tempo")
     public ModelAndView Home() {

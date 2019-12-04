@@ -17,13 +17,54 @@
 <div class="panel panel-default" style="margin: 10px">
     <div class="panel-heading">
         <h1 class="panel-title">Previsão do tempo</h1>
-		<a href="/buscarPrev/cidade/1">carregar online</a>
+		<form action="/buscarPrev/cidade" method="post">
+            <input type="submit" value="Buscar Online" class="btn btn-primary">
+        </form>
         <form action="/tempo" method="post">
             <input type="submit" value="Buscar Todos" class="btn btn-primary">
         </form>
     </div>
     <div class="panel-body">
-        <table class="table">
+	<!-- <table class="table">
+				<thead>
+					<tr>
+						<th>Cidade</th>
+						<th>Latitude</th>
+						<th>Longitude</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cidade : ${cidades}">
+						<td th:text="${cidade.nome}"></td>
+						<td th:text="${cidade.latitude}"></td>
+						<td th:text="${cidade.longitude}"></td>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Semana</th>
+									<th>Data</th>
+									<th>Mínima</th>
+									<th>Máxima</th>
+									<th>Umidade</th>
+									<th>Descrição</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="tempo : ${cidade.tempos}">
+									<td th:text="${tempo.diaSemana.dia}"></td>
+									<td th:text="${clima.dataHora}"></td>
+									<td th:text="${tempo.tempMin}"></td>
+									<td th:text="${tempo.tempMax}"></td>
+									<td th:text="${tempo.humidade}"></td>
+									<td th:text="${tempo.discricao}"></td>
+									<td><img src="" th:src="${tempo.icone}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</tr>
+				</tbody>
+			</table>-->
+       	<table class="table">
             <thead>
             <tr>
                 <th>Cidade</th>
@@ -41,8 +82,8 @@
             <tr th:each="tempo : ${tempos}">
                 <td th:text="${tempo.cidade.nome}"></td>
                 <td th:text="${tempo.diaSemana.dia}"></td>
-                <td th:text="${tempo.temperaturaMin}"></td>
-                <td th:text="${tempo.temperaturaMax}"></td>
+                <td th:text="${tempo.tempMin}"></td>
+                <td th:text="${tempo.tempMax}"></td>
                 <td th:text="${tempo.humidade}"></td>
                 <td th:text="${tempo.dataHora}"></td>
                 <td th:text="${tempo.cidade.latitude}"></td>
@@ -68,8 +109,8 @@
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Nome Cidade" th:field="*{tempo.cidade.nome}"/> 
 				<input type="text" class="form-control" placeholder="Dia da semana" th:field="*{tempo.diaSemana.dia}"/>
-				<input type="text" class="form-control" placeholder="Temperatura Minima" th:field="*{tempo.temperaturaMin}"/>
-				<input type="text" class="form-control" placeholder="Temperatura Maxima" th:field="*{tempo.temperaturaMax}"/>
+				<input type="text" class="form-control" placeholder="Temperatura Minima" th:field="*{tempo.tempMin}"/>
+				<input type="text" class="form-control" placeholder="Temperatura Maxima" th:field="*{tempo.tempMax}"/>
 				<input type="text" class="form-control" placeholder="Humidade" th:field="*{tempo.humidade}"/>
 				<input type="text" class="form-control" placeholder="data e hora" th:field="*{tempo.dataHora}"/>
 				<input type="text" class="form-control" placeholder="Latitude" th:field="*{tempo.cidade.latitude}"/>
@@ -77,7 +118,15 @@
 				<input type="text" class="form-control" placeholder="Descrição" th:field="*{tempo.discricao}"/>
 				<button type="submit" class="btn btn-primary">Adicionar</button>
 			</div>
-		</form>
+		</form> 
+		<!--<form th:action="@{/salvarcidade}" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Nome Cidade" th:field="*{cidade.nome}"/> 							
+				<input type="number" class="form-control" placeholder="Latitude" th:field="*{cidade.latitude}"/>
+				<input type="number" class="form-control" placeholder="Longitude" th:field="*{cidade.longitude}"/>				
+				<button type="submit" class="btn btn-primary">Adicionar</button>
+			</div>
+		</form> -->
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
