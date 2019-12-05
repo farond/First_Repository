@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Clima Previsao</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+	
+	<link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Previsão do Tempo</h1>
+			
+			<a href="/buscarPrev/cidade/1">carregar online</a>
+		</div>
+
+
+		<form class="form-inline" method="get" th:object="${cidade}" th:action="@{/cidades/letra}" style="margin: 20px 0">
+			<div class="form-group">
+					<input type="text" class="form-control" placeholder="Cidade" th:field="*{nome}"/> 
+					<button type="submit" class="btn btn-primary">Buscar</button>
+			</div>
+		</form> 
+			
+			<form class="form-inline" method="get" th:object="${cidade}" th:action="@{/cidades/latitude}" style="margin: 20px 0">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Latitude" th:field="*{latitude}"/> 
+					<input type="text" class="form-control" placeholder="Longitude" th:field="*{longitude}"/> 
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</div>
+			</form>
+			
+		<form th:action="@{/salvar}" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Nome Cidade" th:field="*{cidade.nome}"/> 							
+				<input type="number" class="form-control" placeholder="Latitude" th:field="*{cidade.latitude}"/>
+				<input type="number" class="form-control" placeholder="Longitude" th:field="*{cidade.longitude}"/>				
+				<button type="submit" class="btn btn-primary">Adicionar</button>
+			</div>
+		</form> 
+
+		 
+		<div class="panel-body">
+			<table class="table">
+
+				<tbody>
+					<tr th:each="cidade : ${cidades}">
+						
+						
+						<table class="table">
+							<thead>
+				
+								<tr>
+									<th>Cidade</th>
+									<th>Latitude</th>
+									<th>Longitude</th>
+								</tr>
+								
+								<tr>
+									<td th:text="${cidade.nome}"></td>
+									<td th:text="${cidade.latitude}"></td>
+									<td th:text="${cidade.longitude}"></td>
+								</tr>				
+								<tr>
+									<th>Semana</th>
+									<th>Data</th>
+									<th>Mínima</th>
+									<th>Máxima</th>
+									<th>Umidade</th>
+									<th>Descrição</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="clima : ${cidade.climas}">
+									<td th:text="${clima.semana.dia}"></td>
+									<td th:text="${clima.dataHora}"></td>
+									<td th:text="${clima.tempMin}"></td>
+									<td th:text="${clima.tempMax}"></td>
+									<td th:text="${clima.umidade}"></td>
+									<td th:text="${clima.descricao}"></td>
+									<td><img src="" th:src="${clima.icone}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
